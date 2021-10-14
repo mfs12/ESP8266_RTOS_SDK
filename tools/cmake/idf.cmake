@@ -1,12 +1,19 @@
+
+
 get_property(__idf_env_set GLOBAL PROPERTY __IDF_ENV_SET)
 if(NOT __idf_env_set)
+    message("env-idf-path: " $ENV{IDF_PATH})
+    message("**** env-idf-path: " $ENV{IDF_PATH})
     # Infer an IDF_PATH relative to the tools/cmake directory
     get_filename_component(_idf_path "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
+    message("**** _idf_path: " ${_idf_path})
     file(TO_CMAKE_PATH "${_idf_path}" _idf_path)
+    message("**** _idf_path 2: " ${_idf_path})
 
     # Get the path set in environment
     set(idf_path $ENV{IDF_PATH})
     file(TO_CMAKE_PATH "${idf_path}" idf_path)
+    message("**** _idf_path 3: " ${_idf_path})
 
     # Environment IDF_PATH should match the inferred IDF_PATH. If not, warn the user.
     if(idf_path)
